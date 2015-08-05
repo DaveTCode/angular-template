@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="angularTemplate">
+  <head>
+    <title ng-bind="pageTitle"></title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div ui-view></div>
+    </div>
+  </body>
+</html>

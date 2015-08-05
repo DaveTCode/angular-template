@@ -1,0 +1,24 @@
+@import '../../vendor/bootstrap/less/bootstrap.less';
+@import 'colors.less';
+@import 'variables.less';
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: relative;
+}
+
+body {
+  padding-top: (@navbar-height + 10px);
+}
+
+@import '../app/home/home.less';
+@import '../common/loading/loading.less';

@@ -1,0 +1,15 @@
+{
+  "name": "AngularTemplate",
+  "version": "0.8.0",
+  "devDependencies": {
+    "angular": "*",
+    "angular-mocks": "*",
+    "bootstrap": "*",
+    "angular-bootstrap": "*",
+    "angular-ui-router": "*",
+    "angular-cookies": "*",
+    "angular-sanitize": "*",
+    "angular-animate": "*"
+  },
+  "dependencies": {}
+}

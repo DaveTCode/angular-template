@@ -1,0 +1,18 @@
+application: angular-template
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /
+  static_files: index.html
+  upload: index.html
+
+- url: /assets/(.*\.(gif|png|jpg|ico|bmp|css|js|otf|eot|svg|ttf|woff|woff2))
+  static_files: assets/\1
+  upload: assets/(.*\.(gif|png|jpg|ico|bmp|css|js|otf|eot|svg|ttf|woff|woff2))
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
