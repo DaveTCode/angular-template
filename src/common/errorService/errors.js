@@ -1,13 +1,13 @@
-(function() {
-  'use strict';
-
-  angular.module( 'errors', ['ui.bootstrap'] )
-
-  .service('errorService', ['$uibModal', function($uibModal) {
-    this.showError = function(error) {
-      $uibModal.open({
+class ErrorService {
+  constructor($uibModal) {
+    this.$uibModal = $uibModal;
+  }
+  
+  showError(error) {
+    this.$uibModal.open({
         templateUrl: 'errorService/error.tpl.html',
-        controller: 'ErrorCtrl',
+        controller: 'errorController',
+        controllerAs: 'err',
         keyboard: false,
         backdrop: 'static',
         resolve: {
@@ -16,15 +16,21 @@
           }
         }
       });
-    };
-  }])
+  }
+}
 
-  .controller('ErrorCtrl',
-              ['$scope', '$window', '$uibModalInstance', 'error', function($scope, $window, $uibModalInstance, error) {
-    $scope.error = error;
+class ErrorController {
+  constructor($window, $uibModalInstance, error) {
+    this.$window = $window;
+    this.$uibModalInstance = $uibModalInstance;
+    this.error = error;
+  }
+  
+  refresh() {
+    this.$window.location.reload();
+  }
+}
 
-    $scope.refresh = function() {
-      $window.location.reload();
-    };
-  }]);
-})();
+export default angular.module('errors', ['ui.bootstrap'])
+  .service('errorService', ErrorService)
+  .controller('errorController', ErrorController);
