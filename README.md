@@ -15,9 +15,7 @@ This project is a personal seed project for creating angular applications in a v
 
 * First step is to clone the repository into a directory (doesn't matter where)
 * Run npm install in the new directory
-    * this should install the dev dependencies (bower, grunt etc)
-* Run bower install
-    * This will install all the actual packages required for the application
+    * this will install the dev dependencies (grunt plus plugins) and the runtime dependencies (bootstrap, angular, etc)
 
 ### Running the application locally ###
 
