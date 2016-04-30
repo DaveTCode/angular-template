@@ -1,20 +1,11 @@
 module.exports = function ( grunt ) {
 
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-ng-annotate');
-  grunt.loadNpmTasks('grunt-sass');
+  require('load-grunt-tasks')(grunt);
 
-  var userConfig = require( './build.config.js' );
+  const userConfig = require('./build.config.js');
 
-  var taskConfig = {
-    pkg: grunt.file.readJSON("package.json"),
+  const taskConfig = {
+    pkg: grunt.file.readJSON('package.json'),
     
     meta: {
       banner:
