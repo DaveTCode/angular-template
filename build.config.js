@@ -10,7 +10,7 @@ module.exports = {
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
+    sass: 'src/sass/main.scss'
   },
 
   test_files: {
@@ -21,21 +21,21 @@ module.exports = {
 
   vendor_files: {
     js: [
-      'vendor/angular/angular.js',
-      'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-sanitize/angular-sanitize.min.js',
-      'vendor/angular-animate/angular-animate.min.js',
-      'vendor/angular-cookies/angular-cookies.min.js'
+      'node_modules/angular/angular.js',
+      'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+      'node_modules/angular-ui-router/release/angular-ui-router.js',
+      'node_modules/angular-sanitize/angular-sanitize.js',
+      'node_modules/angular-animate/angular-animate.js',
+      'node_modules/angular-cookies/angular-cookies.js'
     ],
     css: [
     ],
     assets: [
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.eot',
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.svg',
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf',
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff',
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2'
+      'node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot',
+      'node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg',
+      'node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf',
+      'node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff',
+      'node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2'
     ]
   },
 };
