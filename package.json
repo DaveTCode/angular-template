@@ -7,6 +7,12 @@
     "type": "git",
     "url": "https://github.com/DaveTCode/angular-template.git"
   },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8000 -c-1",
+    "pretest": "npm install",
+    "test": "karma start karma.conf.js"
+  },
   "version": "0.8.0",
   "dependencies": {
     "angular": "1.5.5",
@@ -31,9 +37,13 @@
     "grunt-karma": "0.12.2",
     "grunt-ng-annotate": "2.0.2",
     "grunt-sass": "1.1.0",
+    "http-server": "0.9.0",
+    "jasmine-core": "2.4.1",
     "karma": "0.13.22",
     "karma-firefox-launcher": "0.1.7",
+    "karma-chrome-launcher": "0.2.3",
     "karma-jasmine": "0.3.8",
+    "karma-junit-reporter": "0.4.2",
     "protractor": "3.3.0",
     "http-backend-proxy": "1.4.3",
     "express": "4.13.4"
