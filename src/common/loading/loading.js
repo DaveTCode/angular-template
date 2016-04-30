@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   angular.module( 'loading', ['ui.bootstrap'] )
 
@@ -24,7 +24,7 @@
 
   .controller('LoadingModalCtrl',
               ['$scope', '$uibModalInstance', '$timeout', '$q', 'loadingService', function($scope, $uibModalInstance, $timeout, $q, loadingService) {
-    $q.all(loadingService.loading)["finally"](function() {
+    $q.all(loadingService.loading)['finally'](function() {
       loadingService.loading = [];
       $timeout(function() {
         $uibModalInstance.close();

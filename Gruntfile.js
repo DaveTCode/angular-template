@@ -1,20 +1,11 @@
 module.exports = function ( grunt ) {
 
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-ng-annotate');
-  grunt.loadNpmTasks('grunt-sass');
+  require('load-grunt-tasks')(grunt);
 
-  var userConfig = require( './build.config.js' );
+  const userConfig = require('./build.config.js');
 
-  var taskConfig = {
-    pkg: grunt.file.readJSON("package.json"),
+  const taskConfig = {
+    pkg: grunt.file.readJSON('package.json'),
     
     meta: {
       banner:
@@ -52,26 +43,6 @@ module.exports = function ( grunt ) {
           }
        ]
       },
-      build_appjs: {
-        files: [
-          {
-            src: [ '<%= app_files.js %>' ],
-            dest: '<%= build_dir %>/',
-            cwd: '.',
-            expand: true
-          }
-        ]
-      },
-      build_vendorjs: {
-        files: [
-          {
-            src: [ '<%= vendor_files.js %>' ],
-            dest: '<%= build_dir %>/',
-            cwd: '.',
-            expand: true
-          }
-        ]
-      },
       build_vendorcss: {
         files: [
           {
@@ -101,9 +72,9 @@ module.exports = function ( grunt ) {
       build_favicon: {
         files: [
           {
-            src: [ 'favicon.ico' ],
+            src: [ 'src/assets/favicon.ico' ],
             dest: '<%= build_dir %>',
-            cwd: 'src',
+            cwd: '.',
             expand: true,
             flatten: true
           }
@@ -112,13 +83,28 @@ module.exports = function ( grunt ) {
       compile_favicon: {
         files: [
           {
-            src: [ 'favicon.ico' ],
+            src: [ 'src/assets/favicon.ico' ],
             dest: '<%= compile_dir %>',
-            cwd: 'src',
+            cwd: '.',
             expand: true,
             flatten: true
           }
         ]
+      }
+    },
+    
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.',
+          src: ['<%= app_files.js %>', '<%= vendor_files.js %>'],
+          dest: '<%= build_dir %>/'
+        }]
       }
     },
 
@@ -186,26 +172,15 @@ module.exports = function ( grunt ) {
       }
     },
 
-    jshint: {
-      src: [
-        '<%= app_files.js %>'
-      ],
-      test: [
-        '<%= app_files.jsunit %>'
-      ],
-      gruntfile: [
-        'Gruntfile.js'
-      ],
+    eslint: {
       options: {
-        curly: true,
-        immed: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        boss: true,
-        eqnull: true
+        configFile: '.eslintrc'
       },
-      globals: {}
+      target: [
+        '<%= app_files.js %>',
+        '<%= app_files.jsunit %>',
+        'Gruntfile.js'
+      ]
     },
 
     html2js: {
@@ -280,7 +255,7 @@ module.exports = function ( grunt ) {
 
       gruntfile: {
         files: 'Gruntfile.js',
-        tasks: [ 'jshint:gruntfile' ],
+        tasks: [ 'eslint' ],
         options: {
           livereload: false
         }
@@ -290,7 +265,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs' ]
+        tasks: [ 'eslint', 'karma:unit:run', 'copy:build_appjs' ]
       },
 
       assets: {
@@ -317,7 +292,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.jsunit %>'
         ],
-        tasks: [ 'jshint:test', 'karma:unit:run' ],
+        tasks: [ 'eslint', 'karma:unit:run' ],
         options: {
           livereload: false
         }
@@ -331,10 +306,9 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
   grunt.registerTask( 'default', [ 'build', 'compile' ] );
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'sass:build',
+    'clean', 'html2js', 'eslint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss',
-    'copy:build_favicon', 'index:build', 'karma:continuous'
+    'babel', 'copy:build_vendorcss', 'copy:build_favicon', 'index:build', 'karma:continuous'
   ]);
   grunt.registerTask( 'compile', [
     'sass:compile', 'copy:compile_assets', 'copy:compile_favicon', 'ngAnnotate',
@@ -360,11 +334,11 @@ module.exports = function ( grunt ) {
   }
 
   grunt.registerMultiTask( 'index', 'Process index.html template', function () {
-    var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
-    var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
+    const dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
+    const jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
-    var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
+    const cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
 

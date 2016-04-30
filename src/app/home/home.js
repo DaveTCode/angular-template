@@ -1,5 +1,5 @@
 (function() {
-  "use strict";
+  'use strict';
 
   angular.module('angularTemplate.home', [
     'ui.router'
@@ -9,7 +9,7 @@
     $stateProvider.state( 'home', {
       url: '/home',
       views: {
-        "main": {
+        'main': {
           controller: 'HomeCtrl',
           templateUrl: 'home/home.tpl.html'
         }
