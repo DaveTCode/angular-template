@@ -8,8 +8,6 @@ This project is a personal seed project for creating angular applications in a v
 * firefox
     * Required for running tests
 * npm (comes with node.js if installing normally)
-* supervisor
-    * Install after node by running npm install -g supervisor
 
 ### Set up ###
 
@@ -22,9 +20,9 @@ This project is a personal seed project for creating angular applications in a v
 * You'll need two command prompts open
 * In command prompt 1 run grunt watch from the root of the application
     * This will compile the js/less files and put the code into /build
-* Run supervisor app.js
-    * This will run a tiny node server locally which hosts the static directory /build
-* You can now visit the site at http://localhost:3000
+* Run npm start
+    * This will run a server locally which hosts the whole application
+* You can now visit the site at http://localhost:8000/build
 
 ### Compiling for release ###
 
