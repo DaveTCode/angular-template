@@ -1,6 +1,6 @@
-@import '../../vendor/bootstrap/less/bootstrap.less';
-@import 'colors.less';
-@import 'variables.less';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+@import 'colors.scss';
+@import 'variables.scss';
 
 @font-face {
   font-family: 'Roboto';
@@ -17,8 +17,8 @@ html, body {
 }
 
 body {
-  padding-top: (@navbar-height + 10px);
+  padding-top: ($navbar-height + 10px);
 }
 
-@import '../app/home/home.less';
-@import '../common/loading/loading.less';
+@import '../app/home/home.scss';
+@import '../common/loading/loading.scss';

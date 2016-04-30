@@ -1,61 +1,20 @@
 module.exports = function ( grunt ) {
 
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-conventional-changelog');
-  grunt.loadNpmTasks('grunt-bump');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ng-annotate');
-  grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-sass');
 
   var userConfig = require( './build.config.js' );
 
   var taskConfig = {
     pkg: grunt.file.readJSON("package.json"),
-
-    meta: {
-      banner:
-        '/**\n' +
-        ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-        ' *\n' +
-        ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-        ' */\n'
-    },
-
-    changelog: {
-      options: {
-        dest: 'CHANGELOG.md',
-        template: 'changelog.tpl'
-      }
-    },
-
-    /**
-     * Increments the version number, etc.
-     */
-    bump: {
-      options: {
-        files: [
-          "package.json",
-          "bower.json"
-        ],
-        commit: false,
-        commitMessage: 'chore(release): v%VERSION%',
-        commitFiles: [
-          "package.json",
-          "client/bower.json"
-        ],
-        createTag: false,
-        tagName: 'v%VERSION%',
-        tagMessage: 'Version %VERSION%',
-        push: false,
-        pushTo: 'origin'
-      }
-    },
 
     clean: [
       '<%= build_dir %>',
@@ -202,19 +161,18 @@ module.exports = function ( grunt ) {
       }
     },
 
-    less: {
+    sass: {
       build: {
+        options: {
+            sourceMap: true
+        },
         files: {
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': 'src/scss/main.scss'
         }
       },
       compile: {
         files: {
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
-        },
-        options: {
-          cleancss: true,
-          compress: true
+          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': 'src/scss/main.scss'
         }
       }
     },
@@ -346,11 +304,6 @@ module.exports = function ( grunt ) {
         tasks: [ 'html2js' ]
       },
 
-      less: {
-        files: [ 'src/**/*.less' ],
-        tasks: [ 'less:build' ]
-      },
-
       jsunit: {
         files: [
           '<%= app_files.jsunit %>'
@@ -369,13 +322,13 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
   grunt.registerTask( 'default', [ 'build', 'compile' ] );
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'less:build',
+    'clean', 'html2js', 'jshint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss',
     'copy:build_favicon', 'index:build', 'karmaconfig', 'karma:continuous'
   ]);
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'copy:compile_favicon', 'ngAnnotate',
+    'sass:compile', 'copy:compile_assets', 'copy:compile_favicon', 'ngAnnotate',
     'concat:compile_js', 'uglify', 'index:compile'
   ]);
 

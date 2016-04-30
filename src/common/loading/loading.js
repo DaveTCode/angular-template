@@ -3,14 +3,14 @@
 
   angular.module( 'loading', ['ui.bootstrap'] )
 
-  .service('loadingService', ['$q', '$modal', function($q, $modal) {
+  .service('loadingService', ['$q', '$uibModal', function($q, $uibModal) {
     this.loading = [];
 
     this.load = function(deferred) {
       this.loading.push(deferred.promise);
 
       if (this.loading.length === 1) {
-        this.modalInstance = $modal.open({
+        this.modalInstance = $uibModal.open({
           templateUrl: 'loading/loading-modal.tpl.html',
           controller: 'LoadingModalCtrl',
           backdrop: 'static',
@@ -23,11 +23,11 @@
   }])
 
   .controller('LoadingModalCtrl',
-              ['$scope', '$modalInstance', '$timeout', '$q', 'loadingService', function($scope, $modalInstance, $timeout, $q, loadingService) {
+              ['$scope', '$uibModalInstance', '$timeout', '$q', 'loadingService', function($scope, $uibModalInstance, $timeout, $q, loadingService) {
     $q.all(loadingService.loading)["finally"](function() {
       loadingService.loading = [];
       $timeout(function() {
-        $modalInstance.close();
+        $uibModalInstance.close();
       }, 50);
     });
   }]);

@@ -1,0 +1,135 @@
+.modal {
+  .modal-sm {
+    margin: auto;
+    width: 150px;
+
+    .modal-content {
+      background-color: transparent;
+      border: none;
+      border-radius: none;
+      box-shadow: none;
+
+      .loader-modal {
+        @-moz-keyframes throbber-loader {
+          0% { background: #dde2e7; }
+          10% { background: #6b9dc8; }
+          40% { background: #dde2e7; }
+        }
+        @-webkit-keyframes throbber-loader {
+          0% { background: #dde2e7; }
+          10% { background: #6b9dc8; }
+          40% { background: #dde2e7; }
+        }
+        @keyframes throbber-loader {
+          0% { background: #dde2e7; }
+          10% { background: #6b9dc8; }
+          40% { background: #dde2e7; }
+        }
+        /* :not(:required) hides these rules from IE9 and below */
+        .throbber-loader:not(:required) {
+          -moz-animation: throbber-loader 2000ms 300ms infinite ease-out;
+          -webkit-animation: throbber-loader 2000ms 300ms infinite ease-out;
+          animation: throbber-loader 2000ms 300ms infinite ease-out;
+          background: #dde2e7;
+          display: inline-block;
+          position: relative;
+          text-indent: -9999px;
+          width: 0.9em;
+          height: 1.5em;
+          margin: 0 1.6em;
+          font-size: 2em;
+        }
+        .throbber-loader:not(:required):before, .throbber-loader:not(:required):after {
+          background: #dde2e7;
+          content: '\x200B';
+          display: inline-block;
+          width: 0.9em;
+          height: 1.5em;
+          position: absolute;
+          top: 0;
+        }
+        .throbber-loader:not(:required):before {
+          -moz-animation: throbber-loader 2000ms 150ms infinite ease-out;
+          -webkit-animation: throbber-loader 2000ms 150ms infinite ease-out;
+          animation: throbber-loader 2000ms 150ms infinite ease-out;
+          left: -1.6em;
+        }
+        .throbber-loader:not(:required):after {
+          -moz-animation: throbber-loader 2000ms 450ms infinite ease-out;
+          -webkit-animation: throbber-loader 2000ms 450ms infinite ease-out;
+          animation: throbber-loader 2000ms 450ms infinite ease-out;
+          right: -1.6em;
+        }
+
+        .loader {
+          margin: 2em auto;
+          font-size: 2em;
+          width: 1em;
+          height: 1em;
+          border-radius: 50%;
+          position: relative;
+          text-indent: -9999em;
+          -webkit-animation: load5 1.1s infinite ease;
+          animation: load5 1.1s infinite ease;
+          -webkit-transform: translateZ(0);
+          -ms-transform: translateZ(0);
+          transform: translateZ(0);
+        }
+        @-webkit-keyframes load5 {
+          0%,
+          100% {
+            box-shadow: 0em -2.6em 0em 0em $clouds, 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 50%), -1.8em -1.8em 0 0em darken($clouds, 30%);
+          }
+          12.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 30%), 1.8em -1.8em 0 0em $clouds, 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 50%);
+          }
+          25% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 50%), 1.8em -1.8em 0 0em darken($clouds, 30%), 2.5em 0em 0 0em $clouds, 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          37.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 50%), 2.5em 0em 0 0em darken($clouds, 30%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          50% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 50%), 1.75em 1.75em 0 0em darken($clouds, 30%), 0em 2.5em 0 0em $clouds, -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          62.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 50%), 0em 2.5em 0 0em darken($clouds, 30%), -1.8em 1.8em 0 0em $clouds, -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          75% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 50%), -1.8em 1.8em 0 0em darken($clouds, 30%), -2.6em 0em 0 0em $clouds, -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          87.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 50%), -2.6em 0em 0 0em darken($clouds, 30%), -1.8em -1.8em 0 0em $clouds;
+          }
+        }
+        @keyframes load5 {
+          0%,
+          100% {
+            box-shadow: 0em -2.6em 0em 0em $clouds, 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 50%), -1.8em -1.8em 0 0em darken($clouds, 30%);
+          }
+          12.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 30%), 1.8em -1.8em 0 0em $clouds, 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 50%);
+          }
+          25% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 50%), 1.8em -1.8em 0 0em darken($clouds, 30%), 2.5em 0em 0 0em $clouds, 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          37.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 50%), 2.5em 0em 0 0em darken($clouds, 30%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          50% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 50%), 1.75em 1.75em 0 0em darken($clouds, 30%), 0em 2.5em 0 0em $clouds, -1.8em 1.8em 0 0em darken($clouds, 60%), -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          62.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 50%), 0em 2.5em 0 0em darken($clouds, 30%), -1.8em 1.8em 0 0em $clouds, -2.6em 0em 0 0em darken($clouds, 60%), -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          75% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 50%), -1.8em 1.8em 0 0em darken($clouds, 30%), -2.6em 0em 0 0em $clouds, -1.8em -1.8em 0 0em darken($clouds, 60%);
+          }
+          87.5% {
+            box-shadow: 0em -2.6em 0em 0em darken($clouds, 60%), 1.8em -1.8em 0 0em darken($clouds, 60%), 2.5em 0em 0 0em darken($clouds, 60%), 1.75em 1.75em 0 0em darken($clouds, 60%), 0em 2.5em 0 0em darken($clouds, 60%), -1.8em 1.8em 0 0em darken($clouds, 50%), -2.6em 0em 0 0em darken($clouds, 30%), -1.8em -1.8em 0 0em $clouds;
+          }
+        }
+      }
+    }
+  }
+}
