@@ -92,9 +92,9 @@ module.exports = function ( grunt ) {
       build_favicon: {
         files: [
           {
-            src: [ 'favicon.ico' ],
+            src: [ 'src/assets/favicon.ico' ],
             dest: '<%= build_dir %>',
-            cwd: 'src',
+            cwd: '.',
             expand: true,
             flatten: true
           }
@@ -103,13 +103,28 @@ module.exports = function ( grunt ) {
       compile_favicon: {
         files: [
           {
-            src: [ 'favicon.ico' ],
+            src: [ 'src/assets/favicon.ico' ],
             dest: '<%= compile_dir %>',
-            cwd: 'src',
+            cwd: '.',
             expand: true,
             flatten: true
           }
         ]
+      }
+    },
+    
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.',
+          src: ['<%= app_files.js %>', '<%= vendor_files.js %>'],
+          dest: '<%= build_dir %>/'
+        }]
       }
     },
 
