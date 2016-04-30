@@ -15,6 +15,15 @@ module.exports = function ( grunt ) {
 
   var taskConfig = {
     pkg: grunt.file.readJSON("package.json"),
+    
+    meta: {
+      banner:
+        '/**\n' +
+        ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        ' *\n' +
+        ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+        ' */\n'
+    },
 
     clean: [
       '<%= build_dir %>',
@@ -219,7 +228,7 @@ module.exports = function ( grunt ) {
 
     karma: {
       options: {
-        configFile: '<%= build_dir %>/karma-unit.js'
+        configFile: '<%= build_dir %>/../karma.conf.js'
       },
       unit: {
         port: 9019,
@@ -325,7 +334,7 @@ module.exports = function ( grunt ) {
     'clean', 'html2js', 'jshint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss',
-    'copy:build_favicon', 'index:build', 'karmaconfig', 'karma:continuous'
+    'copy:build_favicon', 'index:build', 'karma:continuous'
   ]);
   grunt.registerTask( 'compile', [
     'sass:compile', 'copy:compile_assets', 'copy:compile_favicon', 'ngAnnotate',
@@ -371,19 +380,4 @@ module.exports = function ( grunt ) {
       }
     });
   });
-
-  grunt.registerMultiTask( 'karmaconfig', 'Process karma config templates', function () {
-    var jsFiles = filterForJS( this.filesSrc );
-
-    grunt.file.copy( 'karma/karma-unit.tpl.js', grunt.config( 'build_dir' ) + '/karma-unit.js', {
-      process: function ( contents, path ) {
-        return grunt.template.process( contents, {
-          data: {
-            scripts: jsFiles
-          }
-        });
-      }
-    });
-  });
-
 };
