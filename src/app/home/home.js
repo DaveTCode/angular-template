@@ -1,29 +1,28 @@
-(function() {
-  'use strict';
-
-  angular.module('angularTemplate.home', [
-    'ui.router'
-  ])
-
-  .config(function config($stateProvider) {
-    $stateProvider.state( 'home', {
-      url: '/home',
-      views: {
-        'main': {
-          controller: 'HomeCtrl',
-          templateUrl: 'home/home.tpl.html'
-        }
-      },
-      data: { pageTitle: 'Home' },
-      resolve: {
-        'home': function($stateParams, dataFactory) {
-          return dataFactory.getDummyData();
-        }
+function homeConfig($stateProvider) {
+  $stateProvider.state( 'home', {
+    url: '/home',
+    views: {
+      'main': {
+        controller: 'HomeCtrl',
+        controllerAs: 'home',
+        templateUrl: 'home/home.tpl.html'
       }
-    });
-  })
-
-  .controller('HomeCtrl', function HomeController($scope, home) {
-    $scope.home = home;
+    },
+    data: { pageTitle: 'Home' },
+    resolve: {
+      'data': function($stateParams, dataFactory) {
+        return dataFactory.get('test');
+      }
+    }
   });
-})();
+}
+
+class HomeController {
+  constructor(data) {
+    this.data = data;
+  }
+}
+
+angular.module('angularTemplate.home', ['ui.router'])
+  .config(homeConfig)
+  .controller('homeController', HomeController);

@@ -265,7 +265,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.js %>'
         ],
-        tasks: [ 'eslint', 'karma:unit:run', 'copy:build_appjs' ]
+        tasks: [ 'eslint', 'karma:unit:run', 'babel' ]
       },
 
       assets: {
