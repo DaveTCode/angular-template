@@ -1,59 +1,53 @@
-(function() {
-  'use strict';
+class DataFactoryService {
+  constructor($http, $q, loadingService) {
+    this.$http = $http;
+    this.$q = $q;
+    this.loadingService = loadingService;
+    this.urlBase = 'http://api.angularTemplate.com/';
+  }
+  
+  get(url) {
+    const deferred = this.$q.defer();
+    
+    this.loadingService.load(deferred);
+    this.$http.get(this.urlBase + url)
+    .then(function(data, status) {
+      deferred.resolve(data);
+    }, function(data, status) {
+      deferred.reject(data);
+    });
 
-  angular.module( 'dataFactory', ['loading'] )
+    return deferred.promise;
+  }
+  
+  post(url, data) {
+    const deferred = this.$q.defer();
+    
+    this.loadingService.load(deferred);
+    this.$http.post(this.urlBase + url, data)
+    .then(function(data, status) {
+      deferred.resolve(data);
+    }, function(data, status) {
+      deferred.reject(data);
+    });
 
-  .factory('dataFactory',
-           ['$http', '$q', 'loadingService', function($http, $q, loadingService) {
-    var dataFactory = {};
-    var urlBase = 'http://api.angularTemplate.com';
+    return deferred.promise;
+  }
+  
+  delete(url) {
+    const deferred = this.$q.defer();
+    
+    this.loadingService.load(deferred);
+    this.$http['delete'](this.urlBase + url)
+    .then(function(data, status) {
+      deferred.resolve(data);
+    }, function(data, status) {
+      deferred.reject(data);
+    });
 
-    function authenticatedGet(url) {
-      var deferred = $q.defer();
-      loadingService.load(deferred);
-      $http.get(urlBase + url)
-      .success(function(data, status) {
-        deferred.resolve(data);
-      })
-      .error(function(data, status) {
-        deferred.reject(data);
-      });
+    return deferred.promise;
+  }
+}
 
-      return deferred.promise;
-    }
-
-    function authenticatedPost(url, data) {
-      var deferred = $q.defer();
-      loadingService.load(deferred);
-      $http.post(urlBase + url, data)
-      .success(function(data, status) {
-        deferred.resolve(data);
-      })
-      .error(function(data, status) {
-        deferred.reject(data);
-      });
-
-      return deferred.promise;
-    }
-
-    function authenticatedDelete(url) {
-      var deferred = $q.defer();
-      loadingService.load(deferred);
-      $http['delete'](urlBase + url)
-      .success(function(data, status) {
-        deferred.resolve(data);
-      })
-      .error(function(data, status) {
-        deferred.reject(data);
-      });
-
-      return deferred.promise;
-    }
-
-    dataFactory.getDummyData = function() {
-      return authenticatedGet('/dummy');
-    };
-
-    return dataFactory;
-  }]);
-})();
+angular.module('dataFactory', ['loading'])
+  .service('dataFactory', DataFactoryService);

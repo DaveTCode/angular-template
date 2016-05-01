@@ -3,8 +3,8 @@
 </div>
 <div class="modal-body">
   <p>There was an error communicating with the application. Refresh to try again.</p>
-  <p>Message - {{ error.message || "Unexpected error occurred" }}</p>
+  <p>Message - {{ err.error.message || "Unexpected error occurred" }}</p>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="refresh()">Refresh</button>
+  <button class="btn btn-primary" ng-click="err.refresh()">Refresh</button>
 </div>
