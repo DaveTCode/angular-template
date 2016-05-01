@@ -23,6 +23,6 @@ class HomeController {
   }
 }
 
-export default angular.module('angularTemplate.home', ['ui.router'])
+angular.module('angularTemplate.home', ['ui.router'])
   .config(homeConfig)
   .controller('homeController', HomeController);

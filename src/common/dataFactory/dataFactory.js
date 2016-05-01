@@ -49,5 +49,5 @@ class DataFactoryService {
   }
 }
 
-export default angular.module('dataFactory', ['loading'])
+angular.module('dataFactory', ['loading'])
   .service('dataFactory', DataFactoryService);

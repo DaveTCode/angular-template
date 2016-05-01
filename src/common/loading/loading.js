@@ -33,6 +33,6 @@ class LoadingModalController {
   }
 }
 
-export default angular.module('loading', ['ui.bootstrap'])
+angular.module('loading', ['ui.bootstrap'])
   .service('loadingService', LoadingService)
   .controller('loadingModalController', LoadingModalController);

@@ -1,10 +1,3 @@
-import angular from 'angular';
-import 'angular-sanitize';
-import 'angular-animate';
-import 'angular-cookies';
-import 'angular-ui-router';
-import 'angular-ui-bootstrap';
-
 function run($rootScope, errorService) {
   /*
    * Error handler - whenever we hit an error resolving data in a state function

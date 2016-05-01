@@ -93,22 +93,6 @@ module.exports = function ( grunt ) {
       }
     },
     
-    browserify: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.',
-          src: ['<%= app_files.js %>', '<%= vendor_files.js %>'],
-          dest: '<%= build_dir %>/'
-        }],
-        options: {
-          transform: [
-            [ 'babelify', { presets: ['es2015'] } ]
-          ]
-        }
-      }
-    },
-    
     babel: {
       options: {
         sourceMap: true,
@@ -281,7 +265,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.js %>'
         ],
-        tasks: [ 'eslint', 'karma:unit:run', 'browserify' ]
+        tasks: [ 'eslint', 'karma:unit:run', 'babel' ]
       },
 
       assets: {
@@ -324,8 +308,7 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'build', [
     'clean', 'html2js', 'eslint', 'sass:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'browserify', 'copy:build_vendorcss', 'copy:build_favicon', 
-    'index:build', 'karma:continuous', 
+    'babel', 'copy:build_vendorcss', 'copy:build_favicon', 'index:build', 'karma:continuous'
   ]);
   grunt.registerTask( 'compile', [
     'sass:compile', 'copy:compile_assets', 'copy:compile_favicon', 'ngAnnotate',

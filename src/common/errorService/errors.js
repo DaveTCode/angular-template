@@ -31,6 +31,6 @@ class ErrorController {
   }
 }
 
-export default angular.module('errors', ['ui.bootstrap'])
+angular.module('errors', ['ui.bootstrap'])
   .service('errorService', ErrorService)
   .controller('errorController', ErrorController);
