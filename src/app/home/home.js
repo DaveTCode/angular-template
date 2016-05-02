@@ -1,25 +1,26 @@
 function homeConfig($stateProvider) {
-  $stateProvider.state( 'home', {
+  $stateProvider.state( 'app.home', {
     url: '/home',
     views: {
       'main': {
-        controller: 'HomeCtrl',
-        controllerAs: 'home',
+        controller: 'homeController',
+        controllerAs: 'data',
         templateUrl: 'home/home.tpl.html'
       }
     },
     data: { pageTitle: 'Home' },
     resolve: {
-      'data': function($stateParams, dataFactory) {
-        return dataFactory.get('test');
+      'home': function($stateParams, dataFactory) {
+        //return dataFactory.get('test');
+        return {'test': true};
       }
     }
   });
 }
 
 class HomeController {
-  constructor(data) {
-    this.data = data;
+  constructor(home) {
+    this.home = home;
   }
 }
 
