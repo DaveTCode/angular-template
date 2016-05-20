@@ -41,7 +41,7 @@ function config($urlRouterProvider, $stateProvider) {
   $stateProvider.state('app', {
     abstract: true,
     url: '/app',
-    controller: 'parentController',
+    controller: 'ParentController',
     controllerAs: 'parent',
     templateUrl: 'parent.tpl.html'
   });
@@ -53,7 +53,8 @@ function config($urlRouterProvider, $stateProvider) {
  */
 class ParentController {
   constructor() {
-    this.navbarCollapsed = true;
+    var vm = this;
+    vm.navbarCollapsed = true;
   }
 }
   
@@ -70,4 +71,4 @@ angular.module('angularTemplate', [
   'dataFactory'])
   .config(config)
   .run(run)
-  .controller('parentController', ParentController);
+  .controller('ParentController', ParentController);
