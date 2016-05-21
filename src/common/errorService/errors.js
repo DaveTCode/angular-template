@@ -6,7 +6,7 @@ class ErrorService {
   showError(error) {
     this.$uibModal.open({
         templateUrl: 'errorService/error.tpl.html',
-        controller: 'errorController',
+        controller: 'ErrorController',
         controllerAs: 'err',
         keyboard: false,
         backdrop: 'static',
@@ -21,16 +21,18 @@ class ErrorService {
 
 class ErrorController {
   constructor($window, $uibModalInstance, error) {
-    this.$window = $window;
-    this.$uibModalInstance = $uibModalInstance;
-    this.error = error;
+    var vm = this;
+    vm.$window = $window;
+    vm.$uibModalInstance = $uibModalInstance;
+    vm.error = error;
   }
   
   refresh() {
-    this.$window.location.reload();
+    var vm = this;
+    vm.$window.location.reload();
   }
 }
 
 angular.module('errors', ['ui.bootstrap'])
   .service('errorService', ErrorService)
-  .controller('errorController', ErrorController);
+  .controller('ErrorController', ErrorController);
