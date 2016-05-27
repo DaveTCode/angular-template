@@ -3,8 +3,8 @@ function homeConfig($stateProvider) {
     url: '/home',
     views: {
       'main': {
-        controller: 'homeController',
-        controllerAs: 'data',
+        controller: 'HomeController',
+        controllerAs: 'homeCon',
         templateUrl: 'home/home.tpl.html'
       }
     },
@@ -20,10 +20,11 @@ function homeConfig($stateProvider) {
 
 class HomeController {
   constructor(home) {
-    this.home = home;
+    var vm = this;
+    vm.home = home;
   }
 }
 
 angular.module('angularTemplate.home', ['ui.router'])
   .config(homeConfig)
-  .controller('homeController', HomeController);
+  .controller('HomeController', HomeController);

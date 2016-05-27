@@ -2,12 +2,18 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jasmine": true
   },
   "rules": {
     "quotes": [2, "single"],
     "eol-last": [0],
     "no-mixed-requires": [0],
-    "no-underscore-dangle": [0]
-  }
+    "no-underscore-dangle": [0],
+    // Don't check if function arguments are all used.
+    "no-unused-vars": [2, {"args": "none"}],
+    "angular/no-service-method": 1,
+    "angular/on-watch": 1
+  },
+  "extends": ["eslint:recommended", "angular"]
 }
